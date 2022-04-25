@@ -1,5 +1,7 @@
 """ Password Locker Application. """
 
+# NAVIGATION UI
+
 print("\n")
 print("""-----------------------------------------------------------------------------------------------------------""")
 print("""\n                                        WELCOME TO MWANDANI !                                            """)
@@ -45,7 +47,18 @@ while running:
             print("manage users account")
         if navigation_option == 4:
             print("user password recovery")
+
     else:
             print("!Kindly enter either 'quit' or 'y'")
 
 print(":-) Thank you for choosing Mwandani. We got your back.")
+
+
+# DATA STRUCTURES
+
+
+
+
+
+
+
