@@ -24,18 +24,13 @@ mwandani_user_store = []
 class Application:
 
     def __init__(self, name, password):
-        self.app = {}
-        self.name = name
-        self.password = password
-        app.app_name = self.name
-        app.app_password = self.password
-
-        mwandani_app_store.append(app)
+        self.app = {
+            'app_name': name,
+            'app_password': password
+        }
 
     def register_app(self):
-        user_app_name = (input("Enter application's name: ")).lower()
-        user_app_password = input("Enter application's password: ")
-        self.app_name = Application(user_app_name, user_app_password)
+        mwandani_app_store.append(self.app)
 
 
 class Mwandani_user:
@@ -52,6 +47,7 @@ class Mwandani_user:
         # Add new user object to list of Mwandani users
         mwandani_user_store.append(self.user)
 
+
     def login_user(self, login_name, login_password):
         if login_name == self.username and login_password == self.password:
             return True
@@ -64,6 +60,7 @@ class Mwandani_user:
 running = True
 
 while running:
+
 
     program_active = input("Press Y to proceed or Type 'quit' to exit: ")
 
@@ -86,16 +83,52 @@ while running:
 
         if navigation_option == 1:
             print("Hello, Kindly enter your")
-            first_name = input("Enter Your First Name: ")
-            middle_name = input("Enter Your Middle Name: ")
-            username = input("Enter a Mwandani Username: ")
-            password = input("Enter a new Mwandani Password: ")
+            first_name = input("Your First Name: ")
+            middle_name = input("Your Middle Name: ")
+            username = input("Please enter a unique Mwandani Username: ")
+            password = input("Please enter a new Mwandani Password: ")
 
-            new_user = Mwandani_user(first_name, middle_name, username, password)
-            new_user.register_user()
+            current_user = Mwandani_user(first_name, middle_name, username, password)
+            current_user.register_user()
+
+
 
         if navigation_option == 2:
-            print("sign in the user")
+
+            # INSERT: Code to login
+
+            print("\nKindly select an option number to proceed:")
+            print("""
+            1. Register a new app
+            2. Retrieve app's credentials
+            3. Retrieve all app's credentials                   
+
+            """)
+            sign_in_step = int(input(": "))
+
+            if sign_in_step == 1:
+                while True:
+                    user_app_name = (input("Please enter application's name: ")).lower()
+                    user_app_password = input("Enter application's password: ")
+                    new_app = Application(user_app_name, user_app_password)
+                    new_app.register_app()
+
+                    registration = input("Register another app? (y/n): ")
+                    if registration.lower() == 'y':
+                        continue
+                    if registration.lower() == 'n':
+                        break
+
+
+            elif sign_in_step == 2:
+                user_app_name = (input("Please enter application's name: ")).lower()
+
+            elif sign_in_step == 3:
+                pass
+
+            else:
+                pass
+
         if navigation_option == 3:
             print("manage users account")
         if navigation_option == 4:
@@ -106,8 +139,8 @@ while running:
 
 for user in mwandani_user_store:
     print(user)
-# for app in mwandani_app_store:
-#     print(app)
+for app in mwandani_app_store:
+    print(app)
 
 print(":-) Thank you for choosing Mwandani. We got your back.")
 
