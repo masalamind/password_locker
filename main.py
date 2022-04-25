@@ -70,7 +70,7 @@ while running:
         break
 
     if program_active.lower() == 'y' or program_active.lower() == 'yes':
-        print("\nSelect an option number to proceed: ")
+        print("\nKindly select an option number to proceed: ")
         print("""
         1. Signup on Mwandani
         2. Sign into your Mwandani Account
@@ -120,11 +120,17 @@ while running:
                         break
 
 
-            elif sign_in_step == 2:
-                user_app_name = (input("Please enter application's name: ")).lower()
+            if sign_in_step == 2:
+                user_app_name = (input("Please enter the application's name: ")).lower()
+                #print(mwandani_app_store)
+                for app in mwandani_app_store:
+                    if app['app_name'] == user_app_name:
+                        print(f"{app['app_name']} : {app['app_password']}")
 
-            elif sign_in_step == 3:
-                pass
+
+            if sign_in_step == 3:
+                for app in mwandani_app_store:
+                    print(f"{app['app_name']} : {app['app_password']}")
 
             else:
                 pass
@@ -137,10 +143,10 @@ while running:
     else:
             print("!Kindly enter either 'quit' or 'y'")
 
-for user in mwandani_user_store:
-    print(user)
-for app in mwandani_app_store:
-    print(app)
+# for user in mwandani_user_store:
+#     print(user)
+# for app in mwandani_app_store:
+#     print(app)
 
 print(":-) Thank you for choosing Mwandani. We got your back.")
 
