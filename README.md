@@ -19,7 +19,8 @@ The website is available on github as a script
 
 ## Setup Instructions 
 - Execute MAIN to run the application
-- when prompted with PRESS 'y' TO PROCEED OR TYPE 'quit' TO EXIT APPLICATION: only type quit after you're done using the application
+- When prompted with PRESS 'y' TO PROCEED OR TYPE 'quit' TO EXIT APPLICATION: only type quit after you're done using the application.
+- Entering 'y' after above prompt takes you to the main menu
 - You have to sign in to see the functionality
 - Main functionality found at > 2. Sign into your Mwandani Account 
 - Register app(s) credentials before using other functionality: initially there are no credentials
