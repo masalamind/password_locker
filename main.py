@@ -103,8 +103,8 @@ while running:
         print("""
         1. Signup on Mwandani
         2. Sign into your Mwandani Account
-        3. Manage your Mwandani Account
-        4. Forgotten Password?
+        3. Manage your Mwandani Account [COMING SOON]
+        4. Forgotten Password? [COMING SOON]
 
         """)
 
@@ -164,7 +164,7 @@ while running:
             print("\nKindly select an option number to proceed:")
             print("""
             1. Register new app
-            2. Retrieve credentials
+            2. Retrieve credentials (single app)
             3. Retrieve all app's credentials 
             4. Delete credentials                  
 
