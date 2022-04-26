@@ -16,9 +16,14 @@ print("""
 print("""-----------------------------------------------------------------------------------------------------------""")
 print("\n")
 
-# DATA STRUCTURES
+
+
+
+# DATA STRUCTURES FOR STORING OBJECTS
 mwandani_app_store = []
 mwandani_user_store = []
+
+
 
 
 class Application:
@@ -34,8 +39,10 @@ class Application:
 
 
 class Mwandani_user:
+
     def __init__(self, user_first_name, user_middle_name, user_username, user_password):
         self.user = {
+
             'first_name': user_first_name ,
             'middle_name': user_middle_name,
             'user_name': user_username,
@@ -46,20 +53,19 @@ class Mwandani_user:
         # Add new user object to list of Mwandani users
         mwandani_user_store.append(self.user)
 
-
     def login_user(self, login_name, login_password):
-        if login_name == self.username and login_password == self.password:
+        if login_name == self.user['user_name'] and login_password == self.user['password']:
             return True
         else:
             return False
 
-# BUSINESS LOGIC
 
+
+# BUSINESS LOGIC
 
 running = True
 
 while running:
-
 
     program_active = input("PRESS 'y' TO PROCEED OR TYPE 'quit' TO EXIT: ")
 
@@ -69,7 +75,7 @@ while running:
         break
 
     if program_active.lower() == 'y' or program_active.lower() == 'yes':
-        print("\nKindly select an option number to proceed: ")
+        print("\nHi, Kindly select an option number to proceed: ")
         print("""
         1. Signup on Mwandani
         2. Sign into your Mwandani Account
@@ -80,22 +86,55 @@ while running:
 
         navigation_option = int(input(": "))
 
+        # these options are mutually exclusive so if a user signups and creates an object in one option - the logic
+        # works if the user also creates a new object under another option
         if navigation_option == 1:
-            print("Hello, Kindly enter your")
+            print("To signup on Mwandani, kindly enter your")
             first_name = input("Your First Name: ")
             middle_name = input("Your Middle Name: ")
             username = input("Please enter a unique Mwandani Username: ")
             password = input("Please enter a new Mwandani Password: ")
+            print("\n--------------------------------------------------")
+            print("|  \o/ Success you now have a Mwandani account    |")
+            print("--------------------------------------------------\n")
 
             current_user = Mwandani_user(first_name, middle_name, username, password)
             current_user.register_user()
 
+            verify_account = input("Proceed to Log into my account?(y/n): ")
+            if verify_account.lower() == 'n':
+                break
+            else:
+                pass
+            print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+            my_user_name = input("Enter your username: ")
+            my_password = input("Enter your password: ")
+            print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 
+            while True:
+                if current_user.login_user(my_user_name, my_password):
+                    print(f" \o/ Success: You're now logged in as {my_user_name}")
+                    break
+                else:
+                    print(":( Sorry: The details you entered don't match with our records")
+                    print("Please try again. Or type 'q' to exit.")
 
         if navigation_option == 2:
 
-            # INSERT: Code to login
+            while True:
+                print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                my_user_name = input("Enter your username: ")
+                my_password = input("Enter your password: ")
+                verify_account = input("Proceed to Log me in?(y/n): ")
 
+                print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                if verify_account.lower() == 'y':
+                    break
+                else:
+                    continue
+
+                # because we can't persist data - we'll have to create a new object when a user logins as well
+            print(f"[Logged in as {my_user_name}]")
             print("\nKindly select an option number to proceed:")
             print("""
             1. Register new app
@@ -108,6 +147,7 @@ while running:
 
             if sign_in_step == 1:
                 while True:
+                    print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                     user_app_name = (input("Please enter application's name: ")).lower()
                     user_app_password = input("Enter application's password: ")
                     new_app = Application(user_app_name, user_app_password)
@@ -119,21 +159,23 @@ while running:
                     if registration.lower() == 'n':
                         break
 
-
             if sign_in_step == 2:
-                user_app_name = (input("Please enter the application's name: ")).lower()
-                #print(mwandani_app_store)
+                user_app_name = (input("Type the app's name and press ENTER to proceed: ")).lower()
+                # print(mwandani_app_store)
                 for app in mwandani_app_store:
                     if app['app_name'] == user_app_name:
-                        print(f"{app['app_name']} : {app['app_password']}")
-
+                        print("_______________________________________________________________________________________")
+                        print(f"\t\t{app['app_name']} : {app['app_password']} ")
+                        print("_______________________________________________________________________________________")
 
             if sign_in_step == 3:
                 for app in mwandani_app_store:
-                    print(f"{app['app_name']} : {app['app_password']}")
+                    print("___________________________________________________________________________________________")
+                    print(f"\t\tUsername: {app['app_name']}  Password: {app['app_password']}")
+                    print("___________________________________________________________________________________________")
 
             if sign_in_step == 4:
-                user_app_name = input("Enter the app's name: ")
+                user_app_name = input("Type the app's name and press ENTER to delete [X]: ")
                 # the range is set only once with initial list length thus we need to break less you get an out of index error
                 for i in range(len(mwandani_app_store)):
                     if mwandani_app_store[i]['app_name'] == user_app_name:
@@ -150,42 +192,21 @@ while running:
             print("user password recovery")
 
     else:
-            print("!Kindly enter either 'quit' or 'y'")
+        print("!Kindly enter either 'quit' or 'y'")
+
+
+
+print(":-) Thank you for choosing Mwandani. \n \t\t We got your back.")
+
+
+# VIEW THE DATABASES
 
 # for user in mwandani_user_store:
 #     print(user)
 # for app in mwandani_app_store:
 #     print(app)
 
-print(":-) Thank you for choosing Mwandani. We got your back.")
 
-
-
-
-
-
-    # def view_accounts(self):
-    #     print("""
-    #             1. Enter application name
-    #             2. View all applications credentials
-    #
-    #             """)
-    #     view_accounts_mode = int(input(": "))
-    #
-    #     if view_accounts_mode == 1:
-    #         user_app_name = (input("Enter application name: ")).lower()
-    #         user_pwd = input("Enter Mwandani Password: ")
-    #         # if user_pwd == mwandani_user_db.self.username == user_pwd: # db stored as key value pairs usrnm: pwed
-    #             # mwandani_app_db.query user
-    #
-    #
-    #     elif view_accounts_mode == 2:
-    #         user_pwd = input("Enter Mwandani Password: ")
-    #         # Iterate all items in the mwandani_user_db
-    #
-    #     else:
-    #         print("!Kindly enter either 1 or 2")
-    #
 
 
 
