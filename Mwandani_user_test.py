@@ -8,12 +8,12 @@ class create_create_a_user_account:
         self.firstname = 'john'
         self.middlename = 'doe'
         self.username = 'johndoe'
-        self.password = '@john'
-    
-    return Mwandani_user(self.firstname, self.middlename,self.username, self.password)
+        self.password = '@john'    
+        return Mwandani_user(self.firstname, self.middlename,self.username, self.password)
   
 class register_a_user_in_the_data_store:
-    def__init__(self):
+  
+    def __init__(self):
         user = Mwandani_user('jane','doe','janedoe','smith&doe')
         return data_store.append(user)
   
