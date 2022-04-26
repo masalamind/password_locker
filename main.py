@@ -1,5 +1,6 @@
 """ Password Locker Application. """
-
+import string
+import random
 # NAVIGATION UI
 
 print("\n")
@@ -23,6 +24,25 @@ print("\n")
 mwandani_app_store = []
 mwandani_user_store = []
 
+characters = list(string.ascii_letters + string.digits + "!@#$%^&*()")
+def new_random_password():
+    pwd_length = int(input("Please enter the password length: "))
+
+    random.shuffle(characters)
+
+    password = []
+    for i in range(pwd_length):
+        password.append(random.choice(characters))
+
+    random.shuffle(password)
+    new_password = "".join(password)
+    return new_password
+
+def createPassword(option):
+    if option == 2:
+        return new_random_password()
+    else:
+        return
 
 
 
@@ -67,7 +87,7 @@ running = True
 
 while running:
 
-    program_active = input("PRESS 'y' TO PROCEED OR TYPE 'quit' TO EXIT: ")
+    program_active = input("PRESS 'y' TO PROCEED OR TYPE 'quit' TO EXIT APPLICATION: ")
 
     if program_active.lower() == 'quit' or program_active == 'q':
         print("\nWe're sad to see you go :-( Catch you later though.\n")
@@ -149,7 +169,18 @@ while running:
                 while True:
                     print("\n~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                     user_app_name = (input("Please enter application's name: ")).lower()
-                    user_app_password = input("Enter application's password: ")
+                    print("""Password Options: \n 1. Enter Own Password \n 2. Suggest a password for me
+                          
+                    """)
+                    user_password_option = int(input("1 or 2: "))
+
+                    if user_password_option == 1:
+                        user_app_password = input("Enter application's password: ")
+                    if user_password_option == 2:
+                        user_app_password = createPassword(user_password_option)
+
+                    #user_suggested_password = input("Suggest a password for me: ")
+
                     new_app = Application(user_app_name, user_app_password)
                     new_app.register_app()
 
