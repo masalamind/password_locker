@@ -34,7 +34,6 @@ class Application:
 
 
 class Mwandani_user:
-
     def __init__(self, user_first_name, user_middle_name, user_username, user_password):
         self.user = {
             'first_name': user_first_name ,
@@ -62,7 +61,7 @@ running = True
 while running:
 
 
-    program_active = input("Press Y to proceed or Type 'quit' to exit: ")
+    program_active = input("PRESS 'y' TO PROCEED OR TYPE 'quit' TO EXIT: ")
 
     if program_active.lower() == 'quit' or program_active == 'q':
         print("\nWe're sad to see you go :-( Catch you later though.\n")
@@ -99,9 +98,10 @@ while running:
 
             print("\nKindly select an option number to proceed:")
             print("""
-            1. Register a new app
-            2. Retrieve app's credentials
-            3. Retrieve all app's credentials                   
+            1. Register new app
+            2. Retrieve credentials
+            3. Retrieve all app's credentials 
+            4. Delete credentials                  
 
             """)
             sign_in_step = int(input(": "))
@@ -131,6 +131,15 @@ while running:
             if sign_in_step == 3:
                 for app in mwandani_app_store:
                     print(f"{app['app_name']} : {app['app_password']}")
+
+            if sign_in_step == 4:
+                user_app_name = input("Enter the app's name: ")
+                # the range is set only once with initial list length thus we need to break less you get an out of index error
+                for i in range(len(mwandani_app_store)):
+                    if mwandani_app_store[i]['app_name'] == user_app_name:
+                        del mwandani_app_store[i]
+                        print(f"{user_app_name} has been deleted successfuly.\o/")
+                        break;  # the next iteration will contain the initial number of lists not the no of lists - 1
 
             else:
                 pass
