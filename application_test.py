@@ -1,9 +1,9 @@
-import Application from main
+from main import Application
 
-class create_application_credentials:
-  def__init__(self):
-    self.name = 'an_application_name'
-    self.password = 'an_application_password'
+class create_application_credentials:  
+    def __init__(self):
+        self.name = 'an_application_name'
+        self.password = 'an_application_password'
     
     return Application(self.name, self.password)
   
